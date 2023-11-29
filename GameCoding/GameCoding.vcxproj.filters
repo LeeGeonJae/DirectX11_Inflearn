@@ -21,6 +21,30 @@
     <Filter Include="소스 파일\98. Shaders">
       <UniqueIdentifier>{7a9ab2b2-4c61-411e-93a1-113cc3d7e49b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00_Engine">
+      <UniqueIdentifier>{4861b35d-fe1d-48e9-b669-eddb62e35942}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00_Engine\Pipeline">
+      <UniqueIdentifier>{cef63e6a-5db5-46a5-9618-95c8205e3f10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00_Engine\Pipeline\00.Geometry">
+      <UniqueIdentifier>{a0e6b6d4-385f-4a1c-97f1-f6248aa6e830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00_Engine\Pipeline\02.VertexShader">
+      <UniqueIdentifier>{29b9fe9d-f040-4c80-8b31-837650e03cb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00_Engine\Pipeline\03.Rasterizer">
+      <UniqueIdentifier>{fd1d146b-1538-4456-9052-9e988756eaec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00_Engine\Pipeline\04.PixelShader">
+      <UniqueIdentifier>{e656bd7a-abd2-47af-9225-8ad047013c30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00_Engine\Pipeline\05.OutputMerger">
+      <UniqueIdentifier>{d1255585-9ed0-4150-92f6-352b40722e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00_Engine\Pipeline\01.inputAssembler">
+      <UniqueIdentifier>{ea42a515-2cf9-4a97-85bd-0cd400a09a9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -50,6 +74,48 @@
     <ClInclude Include="GameCoding.h">
       <Filter>소스 파일\01. Main</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>소스 파일\00_Engine\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLayout.h">
+      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryHelper.h">
+      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexData.h">
+      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>소스 파일\00_Engine\Pipeline\02.VertexShader</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>소스 파일\00_Engine\Pipeline\02.VertexShader</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>소스 파일\00_Engine\Pipeline\04.PixelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterizerState.h">
+      <Filter>소스 파일\00_Engine\Pipeline\03.Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplerState.h">
+      <Filter>소스 파일\00_Engine\Pipeline\04.PixelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendState.h">
+      <Filter>소스 파일\00_Engine\Pipeline\05.OutputMerger</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipeline.h">
+      <Filter>소스 파일\00_Engine\Pipeline</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameCoding.rc">
@@ -73,6 +139,48 @@
     </ClCompile>
     <ClCompile Include="GameCoding.cpp">
       <Filter>소스 파일\01. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLayout.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryHelper.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexData.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\02.VertexShader</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstantBuffer.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\02.VertexShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\04.PixelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterizerState.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\03.Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerState.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\04.PixelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendState.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline\05.OutputMerger</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipeline.cpp">
+      <Filter>소스 파일\00_Engine\Pipeline</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
