@@ -5,6 +5,7 @@
 
 struct TransformData
 {
-	Vec3 offset;
-	float dummy;
+	Matrix WorldTransform;
+	Matrix View;
+	Matrix Projection;
 };
