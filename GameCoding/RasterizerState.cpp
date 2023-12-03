@@ -2,14 +2,12 @@
 #include "RasterizerState.h"
 
 RasterizerState::RasterizerState(ComPtr<ID3D11Device> device)
-	: _device(device)
+	:_device(device)
 {
-
 }
 
 RasterizerState::~RasterizerState()
 {
-
 }
 
 void RasterizerState::Create()

@@ -1,14 +1,13 @@
 #include "pch.h"
 #include "SamplerState.h"
 
-SamplerState::SamplerState(ComPtr<ID3D11Device> device) : _device(device)
+SamplerState::SamplerState(ComPtr<ID3D11Device> device)
+	:_device(device)
 {
-
 }
 
 SamplerState::~SamplerState()
 {
-
 }
 
 void SamplerState::Create()
@@ -29,6 +28,5 @@ void SamplerState::Create()
 	desc.MinLOD = FLT_MIN;
 	desc.MipLODBias = 0.0f;
 
-	HRESULT hr = _device->CreateSamplerState(&desc, _samplerState.GetAddressOf());
-	CHECK(hr);
+	_device->CreateSamplerState(&desc, _samplerState.GetAddressOf());
 }

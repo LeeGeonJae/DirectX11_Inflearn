@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Graphics.h"
-#include "GameObject.h"
+class Graphics;
+class GameObject;
 
 class Game
 {
@@ -17,11 +17,10 @@ public:
 private:
 	HWND _hwnd;
 
-	shared_ptr<Graphics> _graphics;
 	shared_ptr<Pipeline> _pipeline;
-
-	// TEMP
-	shared_ptr<GameObject> _monster;
+	shared_ptr<Graphics> _graphics;
+	
+	shared_ptr<GameObject> _gameObject;
 	shared_ptr<GameObject> _camera;
 };
 

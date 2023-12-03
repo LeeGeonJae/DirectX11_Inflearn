@@ -4,6 +4,8 @@
 Graphics::Graphics(HWND hwnd)
 {
 	_hwnd = hwnd;
+	_width = GWinSizeX;
+	_height = GWinSizeY;
 
 	CreateDeviceAndSwapChain();
 	CreateRenderTargetView();
@@ -12,7 +14,6 @@ Graphics::Graphics(HWND hwnd)
 
 Graphics::~Graphics()
 {
-
 }
 
 void Graphics::RenderBegin()
@@ -45,7 +46,7 @@ void Graphics::CreateDeviceAndSwapChain()
 		desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 		desc.BufferCount = 1;
 		desc.OutputWindow = _hwnd;
-		desc.Windowed = TRUE;
+		desc.Windowed = true;
 		desc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	}
 
@@ -75,16 +76,16 @@ void Graphics::CreateRenderTargetView()
 	hr = _swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)backBuffer.GetAddressOf());
 	CHECK(hr);
 
-	hr = _device->CreateRenderTargetView(backBuffer.Get(), nullptr, _renderTargetView.GetAddressOf());
+	_device->CreateRenderTargetView(backBuffer.Get(), nullptr, _renderTargetView.GetAddressOf());
 	CHECK(hr);
 }
 
 void Graphics::SetViewport()
 {
-	_viewport.TopLeftX = 0.0f;
-	_viewport.TopLeftY = 0.0f;
-	_viewport.Width = static_cast<float>(GWinSizeX);
-	_viewport.Height = static_cast<float>(GWinSizeY);
-	_viewport.MinDepth = 0.0f;
-	_viewport.MaxDepth = 1.0f;
+	_viewport.TopLeftX = 0.f;
+	_viewport.TopLeftY = 0.f;
+	_viewport.Width = static_cast<float>(_width);
+	_viewport.Height = static_cast<float>(_height);
+	_viewport.MinDepth = 0.f;
+	_viewport.MaxDepth = 1.f;
 }

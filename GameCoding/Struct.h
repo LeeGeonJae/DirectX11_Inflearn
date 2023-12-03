@@ -2,16 +2,13 @@
 #include "Types.h"
 
 
-//struct Vertex
-//{
-//	Vec3 position;
-//	//Color color;
-//	Vec2 uv;
-//};
 
+struct CameraData
+{
+	Matrix View = Matrix::Identity;
+	Matrix Projection = Matrix::Identity;
+};
 struct TransformData
 {
-	Matrix matWorld = Matrix::Identity;
-	Matrix matView = Matrix::Identity;
-	Matrix matProjection = Matrix::Identity;
+	Matrix WorldTransform = Matrix::Identity;
 };

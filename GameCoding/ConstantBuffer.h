@@ -5,12 +5,13 @@ class ConstantBuffer
 {
 public:
 	ConstantBuffer(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)
-		: _device(device), _deviceContext(deviceContext)
+		:_device(device)
+		, _deviceContext(deviceContext)
 	{
-
 	}
-
-	~ConstantBuffer() { }
+	~ConstantBuffer()
+	{
+	}
 
 	ComPtr<ID3D11Buffer> GetComPtr() { return _constantBuffer; }
 
@@ -26,7 +27,6 @@ public:
 		HRESULT hr = _device->CreateBuffer(&desc, nullptr, _constantBuffer.GetAddressOf());
 		CHECK(hr);
 	}
-
 	void CopyData(const T& data)
 	{
 		D3D11_MAPPED_SUBRESOURCE subResource;
@@ -40,5 +40,7 @@ public:
 private:
 	ComPtr<ID3D11Device> _device;
 	ComPtr<ID3D11DeviceContext> _deviceContext;
+
 	ComPtr<ID3D11Buffer> _constantBuffer;
+
 };

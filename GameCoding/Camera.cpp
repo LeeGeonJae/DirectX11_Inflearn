@@ -4,7 +4,8 @@
 Matrix Camera::S_MatView = Matrix::Identity;
 Matrix Camera::S_MatProjection = Matrix::Identity;
 
-Camera::Camera() : Super(ComponentType::Camera)
+Camera::Camera()
+	:Super(ComponentType::Camera)
 {
 
 }
@@ -24,12 +25,17 @@ void Camera::UpdateMatrix()
 	Vec3 eyePosition = GetTransform()->GetPosition();
 	Vec3 focusPosition = eyePosition + GetTransform()->GetLook();
 	Vec3 upDirection = GetTransform()->GetUp();
-	S_MatView = ::XMMatrixLookAtLH(eyePosition, focusPosition, upDirection);
 
+	// 둘 다 결과는 똑같다.
+	S_MatView = ::XMMatrixLookAtLH(eyePosition, focusPosition, upDirection);
 	//S_MatView = GetTransform()->GetWorldMatrix().Invert();
 
 	if (_type == ProjectionType::Perspective)
+	{
 		S_MatProjection = ::XMMatrixPerspectiveFovLH(XM_PI / 4.f, 800.f / 600.f, 1.f, 100.f);
+	}
 	else
-		S_MatProjection = ::XMMatrixOrthographicLH(800, 600, 0.f, 1.f);
+	{
+		S_MatProjection = XMMatrixOrthographicLH(8, 6, 0.f, 1.f);
+	}
 }

@@ -3,7 +3,7 @@
 class GameObject;
 class Transform;
 
-enum class ComponentType : uint8
+enum class ComponentType
 {
 	Transform,
 	MeshRenderer,
@@ -17,7 +17,7 @@ enum class ComponentType : uint8
 
 enum
 {
-	FIXED_COMPONENT_COUNT = static_cast<uint8>(ComponentType::End) - 1
+	FIXED_COMPONENT_COUNT = static_cast<uint8>(ComponentType::End) - 1,
 };
 
 class Component
@@ -26,24 +26,31 @@ public:
 	Component(ComponentType type);
 	virtual ~Component();
 
-	virtual void Awake() { }
-	virtual void Start() { }	
-	virtual void Update() { }
-	virtual void LateUpdate() { }
-	virtual void FixedUpdate() { }
+	virtual void Init() {}
+	virtual void Start() {}
+	virtual void Update() {}		// 몬스터, 플레이어
+	virtual void LateUpdate() {}	// 카메라
+	virtual void FixedUpdate() {}
 
 public:
-	ComponentType GetType() { return _type; }
-
+	inline ComponentType GetType();
 	shared_ptr<GameObject> GetGameObject();
 	shared_ptr<Transform> GetTransform();
 
 private:
 	friend class GameObject;
-	void SetGameObject(shared_ptr<GameObject> gameObject) { _gameObject = gameObject; }
+	inline void SetGameObject(shared_ptr<GameObject> gameObject);
 
 protected:
 	ComponentType _type;
 	weak_ptr<GameObject> _gameObject;
 };
 
+ComponentType Component::GetType()
+{
+	return _type;
+}
+void Component::SetGameObject(shared_ptr<GameObject> gameObject)
+{
+	_gameObject = gameObject;
+}

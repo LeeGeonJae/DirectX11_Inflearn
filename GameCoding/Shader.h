@@ -4,17 +4,17 @@ enum ShaderScope
 {
 	SS_None = 0,
 	SS_VertexShader = (1 << 0),
-	SS_PixelShader = (1 << 1),
-	SS_Both = SS_VertexShader | SS_PixelShader
+	SS_PixelShader = (1 << 2),
+	SS_Both = SS_VertexShader | SS_PixelShader,
 };
 
 class Shader
 {
 public:
-	Shader(ComPtr<ID3D11Device> device);
+	Shader(ComPtr <ID3D11Device> device);
 	virtual ~Shader();
 
-	virtual void Create(const wstring& path, const string& name, const string& version) abstract;
+	virtual void Create(const wstring& path, const string& name, const string& version) = 0;
 
 	ComPtr<ID3DBlob> GetBlob() { return _blob; }
 
@@ -33,7 +33,7 @@ class VertexShader : public Shader
 	using Super = Shader;
 public:
 	VertexShader(ComPtr<ID3D11Device> device);
-	~VertexShader();
+	virtual ~VertexShader();
 
 	ComPtr<ID3D11VertexShader> GetComPtr() { return _vertexShader; }
 
@@ -48,7 +48,7 @@ class PixelShader : public Shader
 	using Super = Shader;
 public:
 	PixelShader(ComPtr<ID3D11Device> device);
-	~PixelShader();
+	virtual ~PixelShader();
 
 	ComPtr<ID3D11PixelShader> GetComPtr() { return _pixelShader; }
 
@@ -57,3 +57,4 @@ public:
 protected:
 	ComPtr<ID3D11PixelShader> _pixelShader;
 };
+

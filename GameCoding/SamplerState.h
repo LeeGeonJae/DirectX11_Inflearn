@@ -1,13 +1,11 @@
 #pragma once
-
-
 class SamplerState
 {
 public:
 	SamplerState(ComPtr<ID3D11Device> device);
 	~SamplerState();
 
-	ComPtr<ID3D11SamplerState> GetComPtr() { return _samplerState;}
+	ComPtr<ID3D11SamplerState> GetComPtr() { return _samplerState; }
 
 	void Create();
 
