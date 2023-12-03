@@ -22,6 +22,7 @@ public:
 			D3D11_COLOR_WRITE_ENABLE_ALL
 		}, float factor = 0.f);
 
+
 private:
 	ComPtr<ID3D11Device> _device;
 	ComPtr<ID3D11BlendState> _blendState;

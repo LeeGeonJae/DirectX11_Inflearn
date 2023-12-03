@@ -1,22 +1,25 @@
 #pragma once
 
+#define _XM_NO_INTRINSICS_
+
 #include "Types.h"
 #include "Values.h"
 #include "Struct.h"
 
 // STL
+#include <memory>
+#include <iostream>
+#include <array>
 #include <vector>
 #include <list>
 #include <map>
-#include <array>
-#include <string>
 #include <unordered_map>
-#include <memory>
 using namespace std;
 
 // WIN
 #include <windows.h>
 #include <assert.h>
+
 
 // DX
 #include <d3d11.h>
@@ -50,10 +53,8 @@ using namespace Microsoft::WRL;
 #include "Shader.h"
 #include "ConstantBuffer.h"
 #include "Texture.h"
-#include "BlendState.h"
-#include "SamplerState.h"
 #include "RasterizerState.h"
+#include "SamplerState.h"
+#include "BlendState.h"
 #include "Pipeline.h"
-#include "Component.h"
 #include "Transform.h"
-#include "MonoBehaviour.h"

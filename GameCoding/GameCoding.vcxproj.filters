@@ -21,44 +21,47 @@
     <Filter Include="소스 파일\98. Shaders">
       <UniqueIdentifier>{7a9ab2b2-4c61-411e-93a1-113cc3d7e49b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine">
-      <UniqueIdentifier>{4861b35d-fe1d-48e9-b669-eddb62e35942}</UniqueIdentifier>
+    <Filter Include="소스 파일\99. Headers\Utils">
+      <UniqueIdentifier>{d4cf98f4-0911-4631-a446-dfa97d270686}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Pipeline">
-      <UniqueIdentifier>{cef63e6a-5db5-46a5-9618-95c8205e3f10}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine">
+      <UniqueIdentifier>{ddc71f40-a0a2-46e3-8cb4-d52d665740d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Pipeline\00.Geometry">
-      <UniqueIdentifier>{a0e6b6d4-385f-4a1c-97f1-f6248aa6e830}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Pipeline">
+      <UniqueIdentifier>{f73d4060-5018-4528-a0a8-d352d298bcab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Pipeline\02.VertexShader">
-      <UniqueIdentifier>{29b9fe9d-f040-4c80-8b31-837650e03cb7}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Pipeline\00. Geometry">
+      <UniqueIdentifier>{a706708f-893c-4cc3-8a95-8a9e7cc68702}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Pipeline\03.Rasterizer">
-      <UniqueIdentifier>{fd1d146b-1538-4456-9052-9e988756eaec}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Pipeline\01. InputAssembler">
+      <UniqueIdentifier>{26c7fcb5-09d4-4da1-af7c-9c01c663f1a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Pipeline\04.PixelShader">
-      <UniqueIdentifier>{e656bd7a-abd2-47af-9225-8ad047013c30}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Pipeline\02. VertexShader">
+      <UniqueIdentifier>{13be1071-e92b-4ee2-8012-39288129aa3b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Pipeline\05.OutputMerger">
-      <UniqueIdentifier>{d1255585-9ed0-4150-92f6-352b40722e49}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Pipeline\03. Rasterizer">
+      <UniqueIdentifier>{3d364547-33dd-4ed4-bae1-123844520e5f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Pipeline\01.inputAssembler">
-      <UniqueIdentifier>{ea42a515-2cf9-4a97-85bd-0cd400a09a9b}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Pipeline\04. PixelShader">
+      <UniqueIdentifier>{28bdb155-042b-4acf-b7d0-5b011060676b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\GameObject">
-      <UniqueIdentifier>{67e23f84-3a74-4520-b926-155901b1a69d}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Pipeline\05. OutputMerger">
+      <UniqueIdentifier>{51ca6ae4-82ed-4800-b5a0-c3a72b8f5331}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Component">
-      <UniqueIdentifier>{614f95e6-2f20-4170-bd33-99187b4386cf}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\GameObject">
+      <UniqueIdentifier>{13d92d81-739e-43b7-8a74-74ab7983b3ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Component\Animation">
-      <UniqueIdentifier>{be6063bc-c316-4316-8874-8d42af655468}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Component">
+      <UniqueIdentifier>{87ae80a9-2e68-4e17-9e84-9713816835a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Component\Camera">
-      <UniqueIdentifier>{665d40aa-3c1b-41a5-a898-d3e26283a4dc}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Component\Animation">
+      <UniqueIdentifier>{4a4d7460-8edd-426b-baad-e818a41f0126}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\00_Engine\Component\Rendering">
-      <UniqueIdentifier>{60c0bbee-365a-4593-8854-7cd0d58ab81f}</UniqueIdentifier>
+    <Filter Include="소스 파일\00. Engine\Component\Camera">
+      <UniqueIdentifier>{bac7e508-fa1e-4cfb-ac61-369f4ad372aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00. Engine\Component\Rendering">
+      <UniqueIdentifier>{b952e5aa-a29e-42ea-b312-f10ead3abe37}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +77,9 @@
     <ClInclude Include="framework.h">
       <Filter>소스 파일\99. Headers\Andromeda</Filter>
     </ClInclude>
+    <ClInclude Include="Values.h">
+      <Filter>소스 파일\99. Headers</Filter>
+    </ClInclude>
     <ClInclude Include="Struct.h">
       <Filter>소스 파일\99. Headers</Filter>
     </ClInclude>
@@ -86,65 +92,65 @@
     <ClInclude Include="GameCoding.h">
       <Filter>소스 파일\01. Main</Filter>
     </ClInclude>
+    <ClInclude Include="SimpleMath.h">
+      <Filter>소스 파일\99. Headers\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="Graphics.h">
-      <Filter>소스 파일\00_Engine\Pipeline</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="IndexBuffer.h">
-      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
     </ClInclude>
     <ClInclude Include="InputLayout.h">
-      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
     </ClInclude>
     <ClInclude Include="VertexBuffer.h">
-      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
     </ClInclude>
     <ClInclude Include="Geometry.h">
-      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\00. Geometry</Filter>
     </ClInclude>
     <ClInclude Include="GeometryHelper.h">
-      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\00. Geometry</Filter>
     </ClInclude>
     <ClInclude Include="VertexData.h">
-      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\00. Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>소스 파일\00_Engine\Pipeline\02.VertexShader</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\02. VertexShader</Filter>
     </ClInclude>
     <ClInclude Include="ConstantBuffer.h">
-      <Filter>소스 파일\00_Engine\Pipeline\02.VertexShader</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\02. VertexShader</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>소스 파일\00_Engine\Pipeline\04.PixelShader</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\04. PixelShader</Filter>
     </ClInclude>
     <ClInclude Include="RasterizerState.h">
-      <Filter>소스 파일\00_Engine\Pipeline\03.Rasterizer</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\03. Rasterizer</Filter>
     </ClInclude>
     <ClInclude Include="SamplerState.h">
-      <Filter>소스 파일\00_Engine\Pipeline\04.PixelShader</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\04. PixelShader</Filter>
     </ClInclude>
     <ClInclude Include="BlendState.h">
-      <Filter>소스 파일\00_Engine\Pipeline\05.OutputMerger</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\05. OutputMerger</Filter>
     </ClInclude>
     <ClInclude Include="Pipeline.h">
-      <Filter>소스 파일\00_Engine\Pipeline</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>소스 파일\00_Engine\GameObject</Filter>
+      <Filter>소스 파일\00. Engine\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>소스 파일\00_Engine\Component</Filter>
+      <Filter>소스 파일\00. Engine\Component</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>소스 파일\00_Engine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Values.h">
-      <Filter>소스 파일\99. Headers</Filter>
+      <Filter>소스 파일\00. Engine\Component</Filter>
     </ClInclude>
     <ClInclude Include="MonoBehaviour.h">
-      <Filter>소스 파일\00_Engine\Component</Filter>
+      <Filter>소스 파일\00. Engine\Component</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>소스 파일\00_Engine\Component\Camera</Filter>
+      <Filter>소스 파일\00. Engine\Component\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,62 +176,65 @@
     <ClCompile Include="GameCoding.cpp">
       <Filter>소스 파일\01. Main</Filter>
     </ClCompile>
+    <ClCompile Include="SimpleMath.cpp">
+      <Filter>소스 파일\99. Headers\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="Graphics.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="IndexBuffer.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
     </ClCompile>
     <ClCompile Include="InputLayout.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
     </ClCompile>
     <ClCompile Include="VertexBuffer.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\01.inputAssembler</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\01. InputAssembler</Filter>
     </ClCompile>
     <ClCompile Include="Geometry.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\00. Geometry</Filter>
     </ClCompile>
     <ClCompile Include="GeometryHelper.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\00. Geometry</Filter>
     </ClCompile>
     <ClCompile Include="VertexData.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\00.Geometry</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\00. Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\02.VertexShader</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\02. VertexShader</Filter>
     </ClCompile>
     <ClCompile Include="ConstantBuffer.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\02.VertexShader</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\02. VertexShader</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\04.PixelShader</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\04. PixelShader</Filter>
     </ClCompile>
     <ClCompile Include="RasterizerState.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\03.Rasterizer</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\03. Rasterizer</Filter>
     </ClCompile>
     <ClCompile Include="SamplerState.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\04.PixelShader</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\04. PixelShader</Filter>
     </ClCompile>
     <ClCompile Include="BlendState.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline\05.OutputMerger</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline\05. OutputMerger</Filter>
     </ClCompile>
     <ClCompile Include="Pipeline.cpp">
-      <Filter>소스 파일\00_Engine\Pipeline</Filter>
+      <Filter>소스 파일\00. Engine\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>소스 파일\00_Engine\GameObject</Filter>
+      <Filter>소스 파일\00. Engine\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>소스 파일\00_Engine\Component</Filter>
+      <Filter>소스 파일\00. Engine\Component</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>소스 파일\00_Engine\Component</Filter>
+      <Filter>소스 파일\00. Engine\Component</Filter>
     </ClCompile>
     <ClCompile Include="MonoBehaviour.cpp">
-      <Filter>소스 파일\00_Engine\Component</Filter>
+      <Filter>소스 파일\00. Engine\Component</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>소스 파일\00_Engine\Component\Camera</Filter>
+      <Filter>소스 파일\00. Engine\Component\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,5 +244,10 @@
     <FxCompile Include="Color.hlsl">
       <Filter>소스 파일\98. Shaders</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimpleMath.inl">
+      <Filter>소스 파일\99. Headers\Utils</Filter>
+    </None>
   </ItemGroup>
 </Project>

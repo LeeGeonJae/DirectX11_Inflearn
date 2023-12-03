@@ -1,7 +1,5 @@
 #pragma once
 
-class Component;
-class Transform;
 class MonoBehaviour;
 
 class GameObject : public enable_shared_from_this<GameObject>
@@ -10,7 +8,7 @@ public:
 	GameObject(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext);
 	~GameObject();
 
-	void Init();
+	void Awake();
 	void Start();
 	void Update();
 	void LateUpdate();
@@ -22,14 +20,14 @@ public:
 	shared_ptr<Transform> GetOrAddTransform();
 	void AddComponent(shared_ptr<Component> component);
 
+	// ..
+
 	void Render(shared_ptr<Pipeline> pipeline);
 
 private:
 	ComPtr<ID3D11Device> _device;
-	ComPtr<ID3D11DeviceContext> _deviceContext;
 
 	shared_ptr<Geometry<VertexTextureData>> _geometry;
-
 	shared_ptr<VertexBuffer> _vertexBuffer;
 	shared_ptr<IndexBuffer> _indexBuffer;
 	shared_ptr<InputLayout> _inputLayout;
@@ -37,7 +35,6 @@ private:
 	shared_ptr<VertexShader> _vertexShader;
 	shared_ptr<RasterizerState> _rasterizerState;
 	shared_ptr<PixelShader> _pixelShader;
-
 	shared_ptr<Texture> _texture1;
 	shared_ptr<SamplerState> _samplerState;
 	shared_ptr<BlendState> _blendState;
@@ -47,9 +44,8 @@ private:
 	TransformData _transformData;
 	shared_ptr<ConstantBuffer<TransformData>> _constantBuffer;
 
-	shared_ptr<Transform> _transform = make_shared<Transform>();
-
 protected:
 	array<shared_ptr<Component>, FIXED_COMPONENT_COUNT> _components;
 	vector<shared_ptr<MonoBehaviour>> _scripts;
 };
+

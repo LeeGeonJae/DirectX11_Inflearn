@@ -1,16 +1,17 @@
 #include "pch.h"
 #include "Transform.h"
 
-Transform::Transform()
-	: Super(ComponentType::Transform)
+Transform::Transform() : Super(ComponentType::Transform)
 {
+
 }
 
 Transform::~Transform()
 {
+
 }
 
-void Transform::Init()
+void Transform::Awake()
 {
 }
 
@@ -18,60 +19,55 @@ void Transform::Update()
 {
 }
 
-// 회전 행렬을 생성하는 함수
-Vec3 quaternionToRotation(const Quaternion& quat)
+Vec3 ToEulerAngles(Quaternion q)
 {
 	Vec3 angles;
 
 	// roll (x-axis rotation)
-	double sinr_cosp = 2 * (quat.w * quat.x + quat.y * quat.z);
-	double cosr_cosp = 1 - 2 * (quat.x * quat.x + quat.y * quat.y);
-	angles.x = atan2(sinr_cosp, cosr_cosp);
+	double sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
+	double cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+	angles.x = std::atan2(sinr_cosp, cosr_cosp);
 
 	// pitch (y-axis rotation)
-	double sinp = sqrt(1 + 2 * (quat.w * quat.y - quat.x * quat.z));
-	double cosp = sqrt(1 - 2 * (quat.w * quat.y - quat.x * quat.z));
-	angles.y = 2 * atan2(sinp, cosp) - 3.141592f / 2;
+	double sinp = std::sqrt(1 + 2 * (q.w * q.y - q.x * q.z));
+	double cosp = std::sqrt(1 - 2 * (q.w * q.y - q.x * q.z));
+	angles.y = 2 * std::atan2(sinp, cosp) - 3.14159f / 2;
 
 	// yaw (z-axis rotation)
-	double siny_cosp = 2 * (quat.w * quat.z + quat.x * quat.y);
-	double cosy_cosp = 1 - 2 * (quat.y * quat.y + quat.z * quat.z);
-	angles.z = atan2(siny_cosp, cosy_cosp);
+	double siny_cosp = 2 * (q.w * q.z + q.x * q.y);
+	double cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
+	angles.z = std::atan2(siny_cosp, cosy_cosp);
 
 	return angles;
 }
 
 void Transform::UpdateTransform()
 {
-	Matrix Scale = Matrix::CreateScale(_localScale);
-	Matrix Rotation = Matrix::CreateRotationX(_localRotation.x);
-	Rotation *= Matrix::CreateRotationY(_localRotation.y);
-	Rotation *= Matrix::CreateRotationZ(_localRotation.z);
-	Matrix Translation = Matrix::CreateTranslation(_localPosition);
+	Matrix matScale = Matrix::CreateScale(_localScale);
+	Matrix matRotation = Matrix::CreateRotationX(_localRotation.x);
+	matRotation *= Matrix::CreateRotationY(_localRotation.y);
+	matRotation *= Matrix::CreateRotationZ(_localRotation.z);
+	Matrix matTranslation = Matrix::CreateTranslation(_localPosition);
 
-	_local = Scale * Rotation * Translation;
+	_matLocal = matScale * matRotation * matTranslation;
 
 	if (HasParent())
 	{
-		_world = _local * _parent->GetWorldMatrix();
+		_matWorld = _matLocal * _parent->GetWorldMatrix();
 	}
 	else
 	{
-		_world = _local;
+		_matWorld = _matLocal;
 	}
 
 	Quaternion quat;
-
-	_world.Decompose(_scale, quat, _position);
-	_rotation = quaternionToRotation(quat);
+	_matWorld.Decompose(_scale, quat, _position);
+	_rotation = ToEulerAngles(quat);
 
 	// Children
 	for (const shared_ptr<Transform>& child : _children)
-	{
 		child->UpdateTransform();
-	}
 }
-
 
 void Transform::SetScale(const Vec3& worldScale)
 {
@@ -96,15 +92,13 @@ void Transform::SetRotation(const Vec3& worldRotation)
 	{
 		Matrix inverseMatrix = _parent->GetWorldMatrix().Invert();
 
-		Vec3 rotaiton;
-		rotaiton.TransformNormal(worldRotation, inverseMatrix);
+		Vec3 rotation;
+		rotation.TransformNormal(worldRotation, inverseMatrix);
 
-		SetLocalRotation(rotaiton);
+		SetLocalRotation(rotation);
 	}
 	else
-	{
 		SetLocalRotation(worldRotation);
-	}
 }
 
 void Transform::SetPosition(const Vec3& worldPosition)

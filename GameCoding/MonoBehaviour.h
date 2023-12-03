@@ -3,13 +3,14 @@
 
 class MonoBehaviour : public Component
 {
-    using Super = Component;
+	using Super = Component;
 
 public:
-    MonoBehaviour();
-    ~MonoBehaviour();
+	MonoBehaviour();
+	~MonoBehaviour();
 
-    virtual void Init() override;
-    virtual void Update() override;
+	virtual void Awake() override;
+	virtual void Update() override;
+
 };
 

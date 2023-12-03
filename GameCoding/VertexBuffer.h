@@ -1,14 +1,15 @@
 #pragma once
+
 class VertexBuffer
 {
 public:
 	VertexBuffer(ComPtr<ID3D11Device> device);
 	~VertexBuffer();
 
-	inline ComPtr<ID3D11Buffer> GetComPtr();
-	inline uint32 GetStride();
-	inline uint32 GetOffset();
-	inline uint32 GetCount();
+	ComPtr<ID3D11Buffer> GetComPtr() { return _vertexBuffer; }
+	uint32 GetStride() { return _stride; }
+	uint32 GetOffset() { return _offset; }
+	uint32 GetCount() { return _count; }
 
 	template<typename T>
 	void Create(const vector<T>& vertices)
@@ -20,7 +21,7 @@ public:
 		ZeroMemory(&desc, sizeof(desc));
 		desc.Usage = D3D11_USAGE_IMMUTABLE;
 		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-		desc.ByteWidth = _stride * _count;
+		desc.ByteWidth = (uint32)(_stride * _count);
 
 		D3D11_SUBRESOURCE_DATA data;
 		ZeroMemory(&data, sizeof(data));
@@ -32,30 +33,9 @@ public:
 
 private:
 	ComPtr<ID3D11Device> _device;
-	ComPtr<ID3D11Buffer> _vertexBuffer = nullptr;
+	ComPtr<ID3D11Buffer> _vertexBuffer;
 
 	uint32 _stride = 0;
 	uint32 _offset = 0;
 	uint32 _count = 0;
-
-private:
-
 };
-
-ComPtr<ID3D11Buffer> VertexBuffer::GetComPtr()
-{
-	return _vertexBuffer;
-}
-
-uint32 VertexBuffer::GetStride()
-{
-	return _stride;
-}
-uint32 VertexBuffer::GetOffset()
-{
-	return _offset;
-}
-uint32 VertexBuffer::GetCount()
-{
-	return _count;
-}

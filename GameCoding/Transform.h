@@ -1,59 +1,58 @@
 #pragma once
 #include "Component.h"
 
-class Transform : Component
+class Transform : public Component
 {
 	using Super = Component;
 public:
 	Transform();
 	~Transform();
 
-public:
-	virtual void Init() override;
+	virtual void Awake() override;
 	virtual void Update() override;
 
 	void UpdateTransform();
 
 	// Local
-	inline Vec3 GetLocalScale();
-	inline void SetLocalScale(const Vec3 localScale);
-	inline Vec3 GetLocalRotation();
-	inline void SetLocalRotation(const Vec3 localRotation);
-	inline Vec3 GetLocalPosition();
-	inline void SetLocalPosition(const Vec3 localPosition);
+	Vec3 GetLocalScale() { return _localScale; }
+	void SetLocalScale(const Vec3& localScale) { _localScale = localScale; UpdateTransform(); }
+	Vec3 GetLocalRotation() { return _localRotation; }
+	void SetLocalRotation(const Vec3& localRotation) { _localRotation = localRotation; UpdateTransform(); }
+	Vec3 GetLocalPosition() { return _localPosition; }
+	void SetLocalPosition(const Vec3& localPosition) { _localPosition = localPosition; UpdateTransform(); }
 
 	// World
-	inline Vec3 GetScale();
-	void SetScale(const Vec3& worldScale);
-	inline Vec3 GetRotation();
-	void SetRotation(const Vec3& worldRotation);
-	inline Vec3 GetPosition();
-	void SetPosition(const Vec3& worldPosition);
+	Vec3 GetScale() { return _scale; }
+	void SetScale(const Vec3& scale);
+	Vec3 GetRotation() { return _rotation; }
+	void SetRotation(const Vec3& rotation);
+	Vec3 GetPosition() { return _position; }
+	void SetPosition(const Vec3& position);
 
-	inline Vec3 GetRight();
-	inline Vec3 GetUp();
-	inline Vec3 GetLook();
+	Vec3 GetRight() { return _matWorld.Right(); }
+	Vec3 GetUp() { return _matWorld.Up(); }
+	Vec3 GetLook() { return _matWorld.Backward(); }
 
-	inline Matrix GetWorldMatrix();
+	Matrix GetWorldMatrix() { return _matWorld; }
 
 	// °èÃþ °ü°è
-	inline bool HasParent();
+	bool HasParent() { return _parent != nullptr; }
+	
+	shared_ptr<Transform> GetParent() { return _parent; }
+	void SetParent(shared_ptr<Transform> parent) { _parent = parent; }
 
-	inline shared_ptr<Transform> GetParent();
-	inline void SetParent(shared_ptr<Transform> parent);
-
-	inline const vector<shared_ptr<Transform>>& GetChildren();
-	inline void AddChild(shared_ptr<Transform> child);
+	const vector<shared_ptr<Transform>>& GetChildren() { return _children; }
+	void AddChild(shared_ptr<Transform> child) { _children.push_back(child); }
 
 private:
-	Vec3 _localPosition = { 0.f, 0.f, 0.f };
+	Vec3 _localScale = { 1.f, 1.f, 1.f }; 
 	Vec3 _localRotation = { 0.f, 0.f, 0.f };
-	Vec3 _localScale = { 1.f, 1.f, 1.f };
+	Vec3 _localPosition = { 0.f, 0.f, 0.f };
 
 	// Cache
-	Matrix _local = Matrix::Identity;
-	Matrix _world = Matrix::Identity;
-
+	Matrix _matLocal = Matrix::Identity;
+	Matrix _matWorld = Matrix::Identity;
+	
 	Vec3 _scale;
 	Vec3 _rotation;
 	Vec3 _position;
@@ -63,87 +62,3 @@ private:
 	vector<shared_ptr<Transform>> _children;
 };
 
-// Local
-Vec3 Transform::GetLocalScale()
-{
-	return _localScale;
-}
-void Transform::SetLocalScale(const Vec3 localScale)
-{
-	_localScale = localScale;
-	UpdateTransform();
-}
-Vec3 Transform::GetLocalRotation()
-{
-	return _localRotation;
-}
-void Transform::SetLocalRotation(const Vec3 localRotation)
-{
-	_localRotation = localRotation;
-	UpdateTransform();
-}
-Vec3 Transform::GetLocalPosition()
-{
-	return _localPosition;
-}
-void Transform::SetLocalPosition(const Vec3 localPosition)
-{
-	_localPosition = localPosition;
-	UpdateTransform();
-}
-
-
-// World
-Vec3 Transform::GetScale()
-{
-	return _scale;
-}
-Vec3 Transform::GetRotation()
-{
-	return _rotation;
-}
-Vec3 Transform::GetPosition()
-{
-	return _position;
-}
-
-Vec3 Transform::GetRight()
-{
-	return _world.Right();
-}
-Vec3 Transform::GetUp()
-{
-	return _world.Up();
-}
-Vec3 Transform::GetLook()
-{
-	return _world.Backward();
-}
-
-Matrix Transform::GetWorldMatrix()
-{
-	return _world;
-}
-
-
-// °èÃþ °ü°è
-bool Transform::HasParent()
-{
-	return _parent != nullptr;
-}
-shared_ptr<Transform> Transform::GetParent()
-{
-	return _parent;
-}
-void Transform::SetParent(shared_ptr<Transform> parent)
-{
-	_parent = parent;
-}
-const vector<shared_ptr<Transform>>& Transform::GetChildren()
-{
-	return _children;
-}
-void Transform::AddChild(shared_ptr<Transform> child)
-{
-	_children.push_back(child);
-}
