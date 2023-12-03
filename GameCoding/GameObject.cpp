@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "GameObject.h"
+#include "Component.h"
+#include "Transform.h"
 
 GameObject::GameObject(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)
 	: _device(device)
@@ -47,32 +49,134 @@ GameObject::GameObject(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> 
 	// SampleState
 	_samplerState = make_shared <SamplerState>(_device);
 	_samplerState->Create();
-
-	// Component(Transform) - Test
-	_parent->AddChild(_transform);
-	_transform->SetParent(_parent);
 }
 
 GameObject::~GameObject()
 {
 }
 
+void GameObject::Init()
+{
+	for (shared_ptr<Component>& component : _components)
+	{
+		if (component)
+			component->Init();
+	}
+
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		if (script)
+			script->Init();
+	}
+}
+
+void GameObject::Start()
+{
+	for (shared_ptr<Component>& component : _components)
+	{
+		if (component)
+			component->Start();
+	}
+
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		if (script)
+			script->Start();
+	}
+}
+
 void GameObject::Update()
 {
-	Vec3 pos = _parent->GetPosition();
+	for (shared_ptr<Component>& component : _components)
+	{
+		if (component)
+			component->Update();
+	}
+
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		if (script)
+			script->Update();
+	}
+
+	Vec3 pos = _transform->GetPosition();
 	pos.x += 0.001f;
-	_parent->SetPosition(pos);
+	_transform->SetPosition(pos);
 
-	Vec3 rotation = _parent->GetRotation();
-	rotation.z += 0.01f;
-	_parent->SetRotation(rotation);
-	//Vec3 pos = _transform->GetPosition();
-	//pos.x += 0.001f;
-	//_transform->SetPosition(pos);
-
-	_transformData.WorldTransform = _transform->GetWorldMatrix().Transpose();
+	_transformData.WorldTransform = GetTransform()->GetWorldMatrix().Transpose();
 
 	_constantBuffer->CopyData(_transformData);
+}
+
+void GameObject::LateUpdate()
+{
+	for (shared_ptr<Component>& component : _components)
+	{
+		if (component)
+			component->LateUpdate();
+	}
+
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		if (script)
+			script->LateUpdate();
+	}
+}
+
+void GameObject::FixedUpdate()
+{
+	for (shared_ptr<Component>& component : _components)
+	{
+		if (component)
+		component->FixedUpdate();
+	}
+
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		if (script)
+		script->FixedUpdate();
+	}
+}
+
+shared_ptr<Component> GameObject::GetFixedComponent(ComponentType type)
+{
+	uint8 index = static_cast<uint8>(type);
+	assert(index < FIXED_COMPONENT_COUNT);
+	return _components[index];
+}
+
+shared_ptr<Transform> GameObject::GetTransform()
+{
+	shared_ptr<Component> component = GetFixedComponent(ComponentType::Transform);
+	return dynamic_pointer_cast<Transform>(component);
+}
+
+shared_ptr<Transform> GameObject::GetOrAddTransform()
+{
+	if (GetTransform() == nullptr)
+	{
+		shared_ptr<Transform> transform = make_shared<Transform>();
+		//AddComponent(transform);
+	}
+
+	return GetTransform();
+}
+
+void GameObject::AddComponent(shared_ptr<Component> component)
+{
+	// shared_from_this 는 생성자에서만 생성하지 않으면 됩니다.
+	// this 포인터를 넘겨주는 것이 아니라 shared_ptr로 포인터를 변환해서 this를 넘겨주는 함수
+	component->SetGameObject(shared_from_this());
+
+	uint8 index = static_cast<uint8>(component->GetType());
+	if (index < FIXED_COMPONENT_COUNT)
+	{
+		_components[index] = component;
+	}
+	else
+	{
+		_scripts.push_back(dynamic_pointer_cast<MonoBehaviour>(component));
+	}
 }
 
 void GameObject::Render(shared_ptr<Pipeline> pipeline)

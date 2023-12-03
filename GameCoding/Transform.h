@@ -3,6 +3,7 @@
 
 class Transform : Component
 {
+	using Super = Component;
 public:
 	Transform();
 	~Transform();
@@ -29,6 +30,10 @@ public:
 	inline Vec3 GetPosition();
 	void SetPosition(const Vec3& worldPosition);
 
+	inline Vec3 GetRight();
+	inline Vec3 GetUp();
+	inline Vec3 GetLook();
+
 	inline Matrix GetWorldMatrix();
 
 	// °èÃþ °ü°è
@@ -52,10 +57,6 @@ private:
 	Vec3 _scale;
 	Vec3 _rotation;
 	Vec3 _position;
-
-	Vec3 _right;
-	Vec3 _up;
-	Vec3 _look;
 
 private:
 	shared_ptr<Transform> _parent;
@@ -105,6 +106,20 @@ Vec3 Transform::GetPosition()
 {
 	return _position;
 }
+
+Vec3 Transform::GetRight()
+{
+	return _world.Right();
+}
+Vec3 Transform::GetUp()
+{
+	return _world.Up();
+}
+Vec3 Transform::GetLook()
+{
+	return _world.Backward();
+}
+
 Matrix Transform::GetWorldMatrix()
 {
 	return _world;

@@ -21,7 +21,6 @@ private:
 	shared_ptr<Graphics> _graphics;
 	
 	shared_ptr<GameObject> _gameObject;
-
-private:
+	shared_ptr<GameObject> _camera;
 };
 

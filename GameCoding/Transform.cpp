@@ -2,6 +2,7 @@
 #include "Transform.h"
 
 Transform::Transform()
+	: Super(ComponentType::Transform)
 {
 }
 
@@ -63,12 +64,6 @@ void Transform::UpdateTransform()
 
 	_world.Decompose(_scale, quat, _position);
 	_rotation = quaternionToRotation(quat);
-
-	// TransformCoord
-	// TransformNormal
-	_right = Vec3::TransformNormal(Vec3::Right, _world);
-	_up = Vec3::TransformNormal(Vec3::Up, _world);
-	_look = Vec3::TransformNormal(Vec3::Backward, _world);
 
 	// Children
 	for (const shared_ptr<Transform>& child : _children)

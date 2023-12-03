@@ -8,6 +8,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <array>
 #include <string>
 #include <unordered_map>
 #include <memory>
@@ -53,4 +54,6 @@ using namespace Microsoft::WRL;
 #include "SamplerState.h"
 #include "RasterizerState.h"
 #include "Pipeline.h"
+#include "Component.h"
 #include "Transform.h"
+#include "MonoBehaviour.h"
