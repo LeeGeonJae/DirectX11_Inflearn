@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "Component.h"
+#include "Game.h"
+#include "Pipeline.h"
 
 MeshRenderer::MeshRenderer(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)
 	:Super(ComponentType::MeshRenderer)
@@ -69,6 +71,8 @@ void MeshRenderer::Update()
 
 	_transformData.WorldTransform = GetTransform()->GetWorldMatrix().Transpose();
 	_TransformBuffer->CopyData(_transformData);
+
+	Render(GGame->GetPipeline());
 }
 
 void MeshRenderer::Render(shared_ptr<Pipeline> pipeline)
