@@ -43,6 +43,7 @@ using namespace Microsoft::WRL;
 #define CHECK(p)	assert(SUCCEEDED(p))
 
 // Engine
+#include "Game.h"
 #include "Graphics.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"

@@ -41,6 +41,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         else
         {
             GGame->Update();
+            GGame->Render();
         }
     }
 

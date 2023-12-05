@@ -9,6 +9,7 @@
 #include "InputManager.h"
 #include "TimeManager.h"
 #include "ResourceManager.h"
+#include "RenderManager.h"
 
 unique_ptr<Game> GGame = make_unique<Game>();
 
@@ -35,6 +36,8 @@ void Game::Init(HWND hwnd)
 	_time->Init();
 	_resource = make_shared<ResourceManager>(_graphics->GetDevice());
 	_resource->Init();
+	_render = make_shared<RenderManager>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+	_render->Init();
 
 	_scene = make_shared<SceneManager>(_graphics);
 	//_scene->Init();
@@ -44,16 +47,12 @@ void Game::Init(HWND hwnd)
 
 void Game::Update()
 {
-	_graphics->RenderBegin();
-
 	_input->Update();
 	_time->Update();
 	_scene->Update();
-
-	_graphics->RenderEnd();
 }
 
 void Game::Render()
 {
-
+	_render->Update(_graphics);
 }

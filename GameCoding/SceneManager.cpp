@@ -5,6 +5,10 @@
 #include "Camera.h"
 #include "Transform.h"
 #include "MeshRenderer.h"
+#include "ResourceManager.h"
+#include "Mesh.h"
+#include "Animation.h"
+#include "Animator.h"
 
 SceneManager::SceneManager(shared_ptr<Graphics> graphics)
 	: _graphics(graphics)
@@ -55,12 +59,23 @@ shared_ptr<Scene> SceneManager::LoadTestScene()
 	}
 
 	// Monster
-	shared_ptr<GameObject> gameObject = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 	{
-		gameObject->GetOrAddTransform();
-		gameObject->AddComponent(make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext()));
-		//_gameObject->GetTransform()->SetScale(Vec3(100.f, 100.f, 100.f));
-		//..
+		shared_ptr<GameObject> gameObject = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+		{
+			gameObject->GetOrAddTransform();
+			auto meshRenderer = make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+			gameObject->AddComponent(meshRenderer);
+			auto material = GGame->GetResourceManager()->Get<Material>(L"Default");
+			meshRenderer->SetMaterial(material);
+			auto mesh = GGame->GetResourceManager()->Get<Mesh>(L"Rectangle");
+			meshRenderer->SetMesh(mesh);
+		}
+		{
+			auto animator = make_shared<Animator>();
+			auto anim = GGame->GetResourceManager()->Get<Animation>(L"SnakeAnim");
+			animator->SetAnimation(anim);
+			gameObject->AddComponent(animator);
+		}
 		scene->AddGameObject(gameObject);
 	}
 

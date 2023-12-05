@@ -1,8 +1,15 @@
 #pragma once
 #include "Component.h"
 
-class MeshRenderer :
-    public Component
+#include "Material.h"
+#include "Shader.h"
+
+class Mesh;
+class Material;
+class Shader;
+
+
+class MeshRenderer : public Component
 {
     using Super = Component;
 
@@ -12,32 +19,68 @@ public:
 
 public:
 	virtual void Update() override;
-	void Render(shared_ptr<Pipeline> pipeline);
+
+	inline void SetMaterial(shared_ptr<Material> material);
+	inline void SetShader(shared_ptr<Shader> shader);
+	inline void SetMesh(shared_ptr<Mesh> mesh);
+	inline void SetTexture(shared_ptr<Texture> texture);
+
+	inline auto GetMaterial();
+	inline auto GetVertexShader();
+	inline auto GetInputLayout();
+	inline auto GetPixelShader();
+
+	inline shared_ptr<Mesh> GetMesh();
+	inline shared_ptr<Texture> GetTexture();
 
 private:
 	ComPtr<ID3D11Device> _device;
 
-	// Mesh
-	shared_ptr<Geometry<VertexTextureData>> _geometry;
-	shared_ptr<VertexBuffer> _vertexBuffer;
-	shared_ptr<IndexBuffer> _indexBuffer;
+	friend class RenderManager;
 
-	// Material
-	shared_ptr<InputLayout> _inputLayout;
-	shared_ptr<VertexShader> _vertexShader;
-	shared_ptr<RasterizerState> _rasterizerState;
-	shared_ptr<PixelShader> _pixelShader;
-	shared_ptr<Texture> _texture1;
-
-	shared_ptr<SamplerState> _samplerState;
-	shared_ptr<BlendState> _blendState;
-
-private:
-	// SRT
-	CameraData _cameraData;
-	shared_ptr<ConstantBuffer<CameraData>> _cameraBuffer;
-
-	TransformData _transformData;
-	shared_ptr<ConstantBuffer<TransformData>> _TransformBuffer;
+	// mesh
+	shared_ptr<Mesh> _mesh;
+	shared_ptr<Material> _material;
 };
 
+void MeshRenderer::SetMesh(shared_ptr<Mesh> mesh)
+{
+	_mesh = mesh;
+}
+void MeshRenderer::SetMaterial(shared_ptr<Material> material)
+{
+	_material = material;
+}
+void MeshRenderer::SetShader(shared_ptr<Shader> shader)
+{
+	_material->SetShader(shader);
+}
+void MeshRenderer::SetTexture(shared_ptr<Texture> texture)
+{
+	_material->SetTexture(texture);
+}
+auto MeshRenderer::GetMaterial()
+{
+	return _material;
+}
+auto MeshRenderer::GetVertexShader()
+{
+	return _material->GetShader()->GetVertexShader();
+}
+auto MeshRenderer::GetInputLayout()
+{
+	return _material->GetShader()->GetInputLayout();
+}
+auto MeshRenderer::GetPixelShader()
+{
+	return _material->GetShader()->GetPixelShader();
+}
+
+shared_ptr<Mesh> MeshRenderer::GetMesh()
+{
+	return _mesh;
+}
+shared_ptr<Texture> MeshRenderer::GetTexture()
+{
+	return _material->GetTexture();
+}

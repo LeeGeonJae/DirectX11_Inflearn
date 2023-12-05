@@ -8,6 +8,7 @@ class SceneManager;
 class InputManager;
 class TimeManager;
 class ResourceManager;
+class RenderManager;
 
 class Game
 {
@@ -24,6 +25,7 @@ public:
 	inline shared_ptr<InputManager> GetInputManager();
 	inline shared_ptr<TimeManager> GetTimeManager();
 	inline shared_ptr<ResourceManager> GetResourceManager();
+	inline shared_ptr<RenderManager> GetRenderManager();
 
 	inline shared_ptr<Pipeline> GetPipeline();
 
@@ -38,6 +40,7 @@ private:
 	shared_ptr<InputManager> _input;
 	shared_ptr<TimeManager> _time;
 	shared_ptr<ResourceManager> _resource;
+	shared_ptr<RenderManager> _render;
 };
 
 shared_ptr<SceneManager> Game::GetSceneManager()
@@ -55,6 +58,10 @@ shared_ptr<TimeManager> Game::GetTimeManager()
 shared_ptr<ResourceManager> Game::GetResourceManager()
 {
 	return _resource;
+}
+shared_ptr<RenderManager> Game::GetRenderManager()
+{
+	return _render;
 }
 
 shared_ptr<Pipeline> Game::GetPipeline()

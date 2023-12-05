@@ -20,6 +20,13 @@ cbuffer TransformData : register(b1)
 {
     Matrix WorldTransform;
 }
+cbuffer AnimationData : register(b2)
+{
+    float2 spriteOffset;
+    float2 spriteSize;
+    float2 textureSize;
+    float useAnimation;
+}
 
 // IA - VS - RS - PS - OM
 VS_OUTPUT VS(VS_INPUT input)
@@ -30,7 +37,13 @@ VS_OUTPUT VS(VS_INPUT input)
     output.position = mul(input.position, Projection);
 	output.uv = input.uv;
 
-	return output;
+    if (useAnimation == 1.f)
+    {
+        output.uv *= spriteSize / textureSize;
+        output.uv += spriteOffset / textureSize;
+    }
+    
+    return output;
 }
 
 Texture2D texture0 : register(t0);

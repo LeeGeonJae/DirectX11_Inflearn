@@ -2,6 +2,12 @@
 
 #include "ResourceBase.h"
 
+class Mesh;
+class Material;
+class Shader;
+class Animation;
+class Texture;
+
 class ResourceManager
 {
 public:
@@ -83,6 +89,14 @@ template<typename T>
 ResourceType ResourceManager::GetResourceType()
 {
 	// constexpr을 붙이면 컴파일 단계에서 완성시켜준다.
+	if (is_same_v<T, Mesh>)
+		return ResourceType::Mesh;
+	if (is_same_v<T, Material>)
+		return ResourceType::Material;
+	if (is_same_v<T, Shader>)
+		return ResourceType::Shader;
+	if (is_same_v<T, Animation>)
+		return ResourceType::Animation;
 	if (is_same_v<T, Texture>)
 		return ResourceType::Texture;
 
