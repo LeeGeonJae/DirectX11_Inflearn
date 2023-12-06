@@ -8,7 +8,7 @@ public:
     Mesh(ComPtr<ID3D11Device> device);
     virtual ~Mesh();
 
-    void CreateDefalutRectangle();
+    void CreateDefaultRectangle();
 
     inline shared_ptr<VertexBuffer> GetVertexBuffer();
     inline shared_ptr<IndexBuffer> GetindexBuffer();

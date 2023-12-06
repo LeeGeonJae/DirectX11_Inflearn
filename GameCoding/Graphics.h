@@ -32,7 +32,7 @@ private:
 
 	// Misc
 	D3D11_VIEWPORT _viewport = { 0 };
-	float _clearColor[4] = { 0.f, 0.f, 0.f, 0.f };
+	float _clearColor[4] = { 0.5f, 0.5f, 0.5f, 0.f };
 };
 
 ComPtr<ID3D11Device> Graphics::GetDevice()

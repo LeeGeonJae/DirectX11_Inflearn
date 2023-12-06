@@ -13,12 +13,12 @@ struct VS_OUTPUT
 
 cbuffer CameraData : register(b0)
 {
-    Matrix View;
-    Matrix Projection;
+    row_major Matrix View;
+    row_major Matrix Projection;
 }
 cbuffer TransformData : register(b1)
 {
-    Matrix WorldTransform;
+    row_major Matrix WorldTransform;
 }
 cbuffer AnimationData : register(b2)
 {

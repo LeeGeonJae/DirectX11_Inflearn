@@ -11,7 +11,7 @@ Mesh::~Mesh()
 {
 }
 
-void Mesh::CreateDefalutRectangle()
+void Mesh::CreateDefaultRectangle()
 {
 	_geometry = make_shared<Geometry<VertexTextureData>>();
 	GeometryHelper::CreateRectangle(_geometry);

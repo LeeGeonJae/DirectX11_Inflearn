@@ -26,7 +26,7 @@ void RenderManager::Init()
 	_transformBuffer = make_shared<ConstantBuffer<TransformData>>(_device, _deviceContext);
 	_transformBuffer->Create();
 	_animationBuffer = make_shared<ConstantBuffer<AnimationData>>(_device, _deviceContext);
-	_transformBuffer->Create();
+	_animationBuffer->Create();
 
 	_rasterizerState = make_shared <RasterizerState>(_device);
 	_rasterizerState->Create();
@@ -132,7 +132,6 @@ void RenderManager::RenderObjects()
 		
 		_pipeline->SetConstantBuffer(0, SS_VertexShader, _cameraBuffer);
 		_pipeline->SetConstantBuffer(1, SS_VertexShader, _transformBuffer);
-		_pipeline->SetConstantBuffer(2, SS_PixelShader, _animationBuffer);
 		
 		//_pipeline->SetTexture(0, SS_PixelShader, meshRenderer->GetTexture());
 		_pipeline->SetSamplerState(0, SS_PixelShader, _samplerState);

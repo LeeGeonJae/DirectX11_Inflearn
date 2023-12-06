@@ -209,6 +209,9 @@
     <ClInclude Include="Animator.h">
       <Filter>소스 파일\00_Engine\Component\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="CameraMove.h">
+      <Filter>소스 파일\01. Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameCoding.rc">
@@ -331,6 +334,9 @@
     </ClCompile>
     <ClCompile Include="Animator.cpp">
       <Filter>소스 파일\00_Engine\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraMove.cpp">
+      <Filter>소스 파일\01. Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

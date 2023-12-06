@@ -41,7 +41,7 @@ void ResourceManager::CreateDefaultMesh()
 {
 	shared_ptr<Mesh> mesh = make_shared<Mesh>(_device);
 	mesh->SetName(L"Rectangle");
-	mesh->CreateDefalutRectangle();
+	mesh->CreateDefaultRectangle();
 	Add(mesh->GetName(), mesh);
 }
 

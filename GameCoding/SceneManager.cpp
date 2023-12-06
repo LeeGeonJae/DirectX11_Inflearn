@@ -45,17 +45,23 @@ void SceneManager::LoadScene(wstring sceneName)
 	Init();
 }
 
+#include "CameraMove.h"
 shared_ptr<Scene> SceneManager::LoadTestScene()
 {
 	shared_ptr<Scene> scene = make_shared<Scene>();
 
 	// TODO
 	// Camera
-	shared_ptr<GameObject> camera = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 	{
-		camera->GetOrAddTransform();
-		camera->AddComponent(make_shared<Camera>());
-		scene->AddGameObject(camera);
+		shared_ptr<GameObject> camera = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+		{
+			camera->GetOrAddTransform();
+			camera->AddComponent(make_shared<Camera>());
+			scene->AddGameObject(camera);
+		}
+		{
+			camera->AddComponent(make_shared<CameraMove>());
+		}
 	}
 
 	// Monster
@@ -75,6 +81,27 @@ shared_ptr<Scene> SceneManager::LoadTestScene()
 			auto anim = GGame->GetResourceManager()->Get<Animation>(L"SnakeAnim");
 			animator->SetAnimation(anim);
 			gameObject->AddComponent(animator);
+		}
+		scene->AddGameObject(gameObject);
+	}
+	// Monster
+	{
+		shared_ptr<GameObject> gameObject = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+		gameObject->GetOrAddTransform()->SetPosition(Vec3{ 1.f,1.f,0.f });
+		{
+			gameObject->GetOrAddTransform();
+			auto meshRenderer = make_shared<MeshRenderer>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+			gameObject->AddComponent(meshRenderer);
+			auto material = GGame->GetResourceManager()->Get<Material>(L"Default");
+			meshRenderer->SetMaterial(material);
+			auto mesh = GGame->GetResourceManager()->Get<Mesh>(L"Rectangle");
+			meshRenderer->SetMesh(mesh);
+		}
+		{
+			auto animator = make_shared<Animator>();
+			gameObject->AddComponent(animator);
+			auto anim = GGame->GetResourceManager()->Get<Animation>(L"SnakeAnim");
+			animator->SetAnimation(anim);
 		}
 		scene->AddGameObject(gameObject);
 	}
