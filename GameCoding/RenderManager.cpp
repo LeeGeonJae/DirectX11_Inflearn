@@ -90,7 +90,7 @@ void RenderManager::RenderObjects()
 			continue;
 
 		// SRT
-		_transformData.WorldTransform = transform->GetWorldMatrix();
+		_transformData.WorldTransform = transform->GetWorldMatrix().Transpose();
 		PushTransformData();
 		
 		// Animation
