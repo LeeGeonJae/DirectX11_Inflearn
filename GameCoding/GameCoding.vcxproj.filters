@@ -81,6 +81,12 @@
     <Filter Include="소스 파일\00_Engine\Manager\Render">
       <UniqueIdentifier>{c4060746-036b-4ea7-aebb-6c9343f6b002}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00_Engine\Component\MonoBehaviour">
+      <UniqueIdentifier>{a1092ad1-0d83-46ae-a18a-920f18f189ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99. Headers\Utils">
+      <UniqueIdentifier>{7cf29566-b7ad-492c-af7a-98cd76b4cea1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -210,7 +216,10 @@
       <Filter>소스 파일\00_Engine\Component\Animation</Filter>
     </ClInclude>
     <ClInclude Include="CameraMove.h">
-      <Filter>소스 파일\01. Main</Filter>
+      <Filter>소스 파일\00_Engine\Component\MonoBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>소스 파일\99. Headers\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -336,7 +345,10 @@
       <Filter>소스 파일\00_Engine\Component\Animation</Filter>
     </ClCompile>
     <ClCompile Include="CameraMove.cpp">
-      <Filter>소스 파일\01. Main</Filter>
+      <Filter>소스 파일\00_Engine\Component\MonoBehaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>소스 파일\99. Headers\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

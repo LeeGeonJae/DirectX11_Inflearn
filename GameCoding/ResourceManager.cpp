@@ -75,7 +75,6 @@ void ResourceManager::CreateDefaultMaterial()
 	material->SetShader(Get<Shader>(L"Default"));
 	material->SetTexture(Get <Texture>(L"Skeleton"));
 	Add(material->GetName(), material);
-
 }
 
 void ResourceManager::CreateDefaultAnimation()
@@ -92,5 +91,9 @@ void ResourceManager::CreateDefaultAnimation()
 
 	Add(animation->GetName(), animation);
 
-	// XML
+	// XML + JSON
+	animation->Save(L"TestAnim.xml");
+
+	shared_ptr<Animation> anim2 = make_shared<Animation>();
+	anim2->Load(L"TestAnim.xml");
 }

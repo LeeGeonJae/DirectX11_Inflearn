@@ -13,7 +13,6 @@ MeshRenderer::MeshRenderer(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceConte
 	:Super(ComponentType::MeshRenderer)
 	, _device(device)
 {
-
 }
 
 MeshRenderer::~MeshRenderer()
