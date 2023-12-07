@@ -1,13 +1,13 @@
 
 struct VS_INPUT
 {
-    float4 position : POSITION;
+    float3 position : POSITION;
 	float4 color : COLOR;
 };
 
 struct VS_OUTPUT
 {
-    float4 position : SV_POSITION;
+    float4  position : SV_POSITION;
 	float4 color : COLOR;
 };
 
@@ -22,7 +22,7 @@ cbuffer TransformData : register(b0)
 VS_OUTPUT VS(VS_INPUT input)
 {
     VS_OUTPUT output;
-    output.position = mul(input.position, WorldTransform);
+    output.position = mul(float4(input.position, 1.f), WorldTransform);
     output.color = input.color;
 
     return output;
